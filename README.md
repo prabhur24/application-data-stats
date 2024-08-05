@@ -1,70 +1,99 @@
-# Getting Started with Create React App
+Application Data Stats
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Application Data Stats is a web-based dashboard that provides analytics and insights into different Elasticsearch indices such as loginfo, airinfo, and hotelinfo. This project allows users to visualize data through various charts and tables based on predefined queries.
 
-## Available Scripts
+Key Features
 
-In the project directory, you can run:
+    Date Range Selection: Users can select a start date and end date to filter the data.
+    User ID Filtering: Users can filter data based on user IDs.
+    Dynamic Data Refresh: Users can refresh data with a button click.
+    Visual Representations: Data is displayed in various formats, including bar charts, pie charts, and tables.
 
-### `npm start`
+Images
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+[AirInfo](images/data_airinfo.png)<br>
+[Loginfo](images/data_loginfo.png)<br>
+[Hotelinfo](images/data_hotelinfo.png)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Technologies Used
 
-### `npm test`
+    Frontend: React, Material-UI, Recharts
+    Backend: Node.js, Express
+    Database: Elasticsearch
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Queries Overview
 
-### `npm run build`
+    Total Requests: Count of all requests within the selected date range.
+    Error Requests: Count of error requests based on the status field.
+    Histogram Queries: Visualization of request times or response times.
+    Aggregations: Aggregations based on fields such as endpoint, role, browser, errmsg, and more.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Project Setup
+Prerequisites
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    Node.js: Ensure Node.js and npm are installed.
+    Elasticsearch: Ensure Elasticsearch is running and accessible.
+    Docker: Ensure Docker and Docker Compose are installed.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Installation
 
-### `npm run eject`
+    Clone the repository:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    git clone https://github.com/prabhur24/application-data-stats.git
+cd application-data-stats
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Install dependencies:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+npm install
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Set up environment variables:
 
-## Learn More
+    Create a .env file in the root directory with the following content:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    env
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+        REACT_APP_ELASTICSEARCH_HOST=your_elasticsearch_host
+        REACT_APP_LOGINFO_INDEX=your_loginfo_index
+        REACT_APP_AIRINFO_INDEX=your_airinfo_index
+        REACT_APP_HOTELINFO_INDEX=your_hotelinfo_index
 
-### Code Splitting
+Running the Application
+Development
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+npm start
 
-### Analyzing the Bundle Size
+Production
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+    Build the application:
 
-### Making a Progressive Web App
+npm run build
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Serve the application:
 
-### Advanced Configuration
+    npm install -g serve
+    serve -s build
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Switching Between Environments
 
-### Deployment
+You can switch between different environments (development, test, production) by changing the environment variables in the .env file. For example:
+.env.test
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+env
 
-### `npm run build` fails to minify
+REACT_APP_ELASTICSEARCH_HOST=http://test-elasticsearch:9200
+REACT_APP_LOGINFO_INDEX=test_loginfo*
+REACT_APP_AIRINFO_INDEX=test_airinfo*
+REACT_APP_HOTELINFO_INDEX=test_hotelinfo*
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+.env.prod
+
+env
+
+REACT_APP_ELASTICSEARCH_HOST=http://prod-elasticsearch:9200
+REACT_APP_LOGINFO_INDEX=prod_loginfo*
+REACT_APP_AIRINFO_INDEX=prod_airinfo*
+REACT_APP_HOTELINFO_INDEX=prod_hotelinfo*
+
+To apply the changes, restart your development server or rebuild the application for production.
+
+This README.md provides a comprehensive overview of the project, setup instructions, and details on how to switch between different environments. Feel free to adjust any part to better fit your project's specifics.
